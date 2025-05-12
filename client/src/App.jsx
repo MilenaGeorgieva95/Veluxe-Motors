@@ -11,6 +11,7 @@ import { UserContext } from "./components/contexts/UserContext";
 import { useState } from "react";
 import Register from "./components/user-auth/Register";
 import Logout from "./components/user-auth/Logout";
+import AuthGuard from "./components/guards/AuthGuard";
 
 function App() {
   const [user, setUser] = useState("");
@@ -20,12 +21,16 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/logout" element={<Logout />} />
+
         <Route path="/" element={<Home />} />
-        <Route path="/my-profile" element={<MyProfile />} />
+        <Route element={<AuthGuard />}>
+          <Route path="/my-profile" element={<MyProfile />} />
+          <Route path="/car-club" element={<MyProfile />} />
+          <Route path="/logout" element={<Logout />} />
+        </Route>
         <Route path="/catalog-cars" element={<CatalogCars />} />
         <Route path="/catalog-vans" element={<MyProfile />} />
-        <Route path="/car-club" element={<MyProfile />} />
+
         <Route path="/about" element={<MyProfile />} />
       </Routes>
       <Footer />

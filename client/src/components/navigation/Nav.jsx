@@ -27,9 +27,11 @@ export default function Nav() {
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav ms-auto p-4 p-lg-0">
-            <Link to="/my-profile" className="nav-item nav-link">
-              My Profile
-            </Link>
+            {user?.email && (
+              <Link to="/my-profile" className="nav-item nav-link">
+                My Profile
+              </Link>
+            )}
             <Link to="/catalog-cars" className="nav-item nav-link">
               Hire a Car
             </Link>
