@@ -1,18 +1,12 @@
+import { useParams } from "react-router";
+import { useCar } from "../../api/carsApi";
 import CarCalendar from "./CarCalendar";
 
-const car = {
-  brand: "Toyota",
-  model: "Corolla",
-  img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/2016_Vauxhall_Mokka_Exclusiv_Turbo_1.4.jpg/800px-2016_Vauxhall_Mokka_Exclusiv_Turbo_1.4.jpg?20171005141502",
-  type: "Sedan",
-  transmission: "Automatic",
-  seats: 5,
-  bagsCapacity: 3,
-  features: ["Bluetooth", "Air Conditioning", "GPS"],
-  locations: ["New York", "Los Angeles", "Chicago"],
-};
-
 export default function CarDetails() {
+  const { carId } = useParams();
+  const { car, pending } = useCar(carId);
+  console.log(car);
+
   return (
     <div className="container my-4">
       <div className="row">
@@ -40,7 +34,7 @@ export default function CarDetails() {
 
               <h5>Features</h5>
               <ul className="list-group list-group-flush mb-3">
-                {car.features.map((feature, idx) => (
+                {car.features?.map((feature, idx) => (
                   <li key={idx} className="list-group-item">
                     {feature}
                   </li>
@@ -49,7 +43,7 @@ export default function CarDetails() {
 
               <h5>Available Locations</h5>
               <ul className="list-group list-group-flush">
-                {car.locations.map((location, idx) => (
+                {car.locations?.map((location, idx) => (
                   <li key={idx} className="list-group-item">
                     {location}
                   </li>

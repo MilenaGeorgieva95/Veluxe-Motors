@@ -1,6 +1,5 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
-import { Link } from "react-router";
 
 export default function Calendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());

@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import styles from "./Card.module.css";
 
 export default function Card({ car }) {
@@ -10,7 +11,12 @@ export default function Card({ car }) {
           </div>
           <h4 className="mb-3">{car.brand}</h4>
           <p className="mb-3">{car.model}</p>
-          <span className={styles.detailsBtn}>Details</span>
+          <Link
+            to={`/catalog-cars/${car._id}/details`}
+            className={styles.detailsBtn}
+          >
+            Details
+          </Link>
         </div>
       </div>
     </>

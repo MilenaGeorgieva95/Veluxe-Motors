@@ -21,6 +21,19 @@ export const useCars = () => {
   return { cars, pending };
 };
 
+export const useCar = (carId) => {
+  const [car, setCar] = useState([]);
+  const [pending, setPending] = useState(false);
+  useEffect(() => {
+    setPending(true);
+    request.get(`/data/cardetails/${carId}`).then((data) => {
+      setPending(false);
+      setCar(data);
+    });
+  }, [carId]);
+  return { pending, car };
+};
+
 export const useFeaturedCars = () => {
   const [cars, setCars] = useState([]);
   const [pending, setPending] = useState(false);
