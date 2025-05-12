@@ -12,8 +12,9 @@ import { useState } from "react";
 import Register from "./components/user-auth/Register";
 import Logout from "./components/user-auth/Logout";
 import AuthGuard from "./components/guards/AuthGuard";
-import Appointment from "./components/Appointment";
+import Appointment from "./components/appointment/Appointment";
 import AboutUs from "./components/about-us/AboutUs";
+import "react-datepicker/dist/react-datepicker.css";
 
 function App() {
   const [user, setUser] = useState("");

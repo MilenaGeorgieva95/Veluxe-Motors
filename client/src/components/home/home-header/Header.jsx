@@ -30,8 +30,6 @@ export default function Header() {
               </a>
             </h2>
 
-            {/* New */}
-
             <form className="display-5 text-dark mb-5">
               <div className="row g-4 ">
                 <div className="col-12 col-sm-5">
@@ -51,9 +49,8 @@ export default function Header() {
                     style={{ height: "55px" }}
                   >
                     <option defaultChecked>Choose Vehicle Type</option>
-                    <option value="1">Vehicle 1</option>
-                    <option value="2">Vehicle 2</option>
-                    <option value="3">Vehicle 3</option>
+                    <option value="car">Car</option>
+                    <option value="van">Van</option>
                   </select>
                 </div>
                 <div className="col-12 col-sm-2">
