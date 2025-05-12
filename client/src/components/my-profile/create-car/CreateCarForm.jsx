@@ -2,7 +2,7 @@ export default function CreateCarForm({ onClose, onCreate }) {
   return (
     <div className="container">
       <div className="bg-light rounded h-100 d-flex align-items-center p-5">
-        <form onSubmit={onCreate}>
+        <form action={onCreate}>
           <div className="row g-3">
             <div className="col-12 col-sm-6">
               <input

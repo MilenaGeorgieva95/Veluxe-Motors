@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CreateCarForm from "./CreateCarForm";
-import { carsService } from "../../../api/carsApi";
+import { useCreateCar } from "../../../api/carsApi";
 import { useNavigate } from "react-router";
 
 export default function CreateCar() {
@@ -9,16 +9,15 @@ export default function CreateCar() {
   const showCreateHandler = () => {
     setShowCreate(true);
   };
+  const { create } = useCreateCar();
 
   const closeCreateHandler = () => {
     setShowCreate(false);
   };
 
-  const createCarHandler = async (e) => {
-    e.preventDefault();
-    const formData = Object.fromEntries(new FormData(e.target));
+  const createCarHandler = async (formData) => {
     try {
-      const newCar = await carsService.createCar(formData);
+      const newCar = create(formData);
       setShowCreate(false);
       navigate("/");
     } catch (error) {

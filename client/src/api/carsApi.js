@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { request } from "../utils/requester";
+import { UserContext } from "../components/contexts/UserContext";
 
 const baseUrl = "/data/cars";
 
@@ -39,19 +40,13 @@ export const useFeaturedCars = () => {
   return { cars, pending };
 };
 
-export const carsService = {
-  async createCar(carData) {
-    //TODO: add X-Authorization token
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(carData),
-    };
-    const res = await fetch(
-      "http://localhost:3030/jsonstore/cars/cars",
-      options
-    );
-    const data = await res.json();
-    return data;
-  },
+export const useCreateCar = () => {
+  const { user } = useContext(UserContext);
+  const accessToken = user?.accessToken;
+  console.log(user);
+
+  const create = (carData) => {
+    return request.post(baseUrl, carData, accessToken);
+  };
+  return { create };
 };
