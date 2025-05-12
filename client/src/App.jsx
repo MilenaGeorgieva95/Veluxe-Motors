@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
 import BackToTopBtn from "./components/Buttons/BackToTopBtn";
-import Footer from "./components/Footer";
+import Footer from "./footer/Footer";
 import Nav from "./components/navigation/Nav";
 import Home from "./components/home/Home";
 import MyProfile from "./components/my-profile/MyProfile";
@@ -28,12 +28,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route element={<AuthGuard />}>
           <Route path="/my-profile" element={<MyProfile />} />
+          <Route path="/appointment" element={<Appointment />} />
           <Route path="/car-club" element={<MyProfile />} />
           <Route path="/logout" element={<Logout />} />
         </Route>
         <Route path="/catalog-cars" element={<CatalogCars />} />
         <Route path="/catalog-vans" element={<MyProfile />} />
-        <Route path="/appointment" element={<Appointment />} />
 
         <Route path="/about" element={<AboutUs />} />
       </Routes>
@@ -44,9 +44,3 @@ function App() {
 }
 
 export default App;
-
-// <Feature />
-
-// <Appointment />
-
-// <Testimonials />
