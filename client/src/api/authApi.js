@@ -33,16 +33,21 @@ export const useRegister = () => {
 
 export const useLogout = () => {
   const { user, setUser } = useContext(UserContext);
+  const [pending, setPending] = useState(true);
   useEffect(() => {
-    if (!user) {
+    if (!user || !user.accessToken) {
+      setPending(false);
       return;
     }
+
     try {
-      request.get(`${baseUrl}/logout`, null, accessToken);
+      request.get(`${baseUrl}/logout`, null, user.accessToken);
+      setUser("");
+      setPending(false);
     } catch (error) {
       console.log(error);
-    } finally {
-      setUser("");
+      setPending(false);
     }
-  }, [user]);
+  }, [user.accessToken]);
+  return { pending, setPending };
 };
