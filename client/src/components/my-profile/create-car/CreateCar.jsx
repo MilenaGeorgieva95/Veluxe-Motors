@@ -36,7 +36,7 @@ export default function CreateCar() {
           className="btn btn-primary rounded-pill py-3 px-5 mt-3"
           onClick={showCreateHandler}
         >
-          Create Car
+          Create New Listing
         </span>
       )}
     </div>

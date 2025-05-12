@@ -39,7 +39,9 @@ export default function Appointment() {
                 </div>
               </div>
             </div>
-            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s"></div>
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+              <h3>Hieeeeeeeeee</h3>
+            </div>
           </div>
         </div>
       </div>

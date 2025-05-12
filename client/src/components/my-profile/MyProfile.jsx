@@ -1,5 +1,6 @@
 import PageTitle from "../page-title/PageTitle";
 import CreateCar from "./create-car/CreateCar";
+import MyCars from "./my-cars/MyCars";
 
 export default function MyProfile() {
   return (
@@ -12,6 +13,7 @@ export default function MyProfile() {
           }
         />
         <CreateCar />
+        <MyCars />
       </div>
     </>
   );

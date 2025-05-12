@@ -12,6 +12,8 @@ import { useState } from "react";
 import Register from "./components/user-auth/Register";
 import Logout from "./components/user-auth/Logout";
 import AuthGuard from "./components/guards/AuthGuard";
+import Appointment from "./components/Appointment";
+import AboutUs from "./components/about-us/AboutUs";
 
 function App() {
   const [user, setUser] = useState("");
@@ -30,8 +32,9 @@ function App() {
         </Route>
         <Route path="/catalog-cars" element={<CatalogCars />} />
         <Route path="/catalog-vans" element={<MyProfile />} />
+        <Route path="/appointment" element={<Appointment />} />
 
-        <Route path="/about" element={<MyProfile />} />
+        <Route path="/about" element={<AboutUs />} />
       </Routes>
       <Footer />
       <BackToTopBtn />
