@@ -26,7 +26,6 @@ export default function CreateCar() {
   };
   return (
     <div>
-      <h2>My Profile</h2>
       {showCreate ? (
         <CreateCarForm
           onClose={closeCreateHandler}
