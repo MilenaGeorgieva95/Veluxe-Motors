@@ -20,13 +20,26 @@ export const useCars = () => {
   return { cars, pending };
 };
 
+export const useFeaturedCars = () => {
+  const [cars, setCars] = useState([]);
+  const [pending, setPending] = useState(false);
+
+  useEffect(() => {
+    setPending(true);
+    try {
+      request.get(`${baseUrl}?featured=true`).then((data) => {
+        setCars(data);
+        setPending(false);
+      });
+    } catch (error) {
+      console.log(error);
+      setPending(false);
+    }
+  }, []);
+  return { cars, pending };
+};
+
 export const carsService = {
-  async getAllCars() {
-    const res = await fetch("http://localhost:3030/jsonstore/cars/cars");
-    const data = await res.json();
-    const carsData = Object.values(data);
-    return carsData;
-  },
   async createCar(carData) {
     //TODO: add X-Authorization token
     const options = {

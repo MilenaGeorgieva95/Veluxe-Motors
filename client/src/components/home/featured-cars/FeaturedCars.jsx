@@ -1,20 +1,12 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
 import styles from "./FeaturedCars.module.css";
-import { carsService } from "../../../api/carsApi";
+import { useFeaturedCars } from "../../../api/carsApi";
+import Spinner from "../../spinner/Spinner";
 
 export default function FeaturedCars() {
-  const [carsData, setCarsData] = useState([]);
-
-  useEffect(() => {
-    carsService
-      .getAllCars()
-      .then((data) => {
-        console.log(data);
-        return setCarsData(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const { cars, pending } = useFeaturedCars();
+  console.log(pending);
 
   return (
     <>
@@ -34,9 +26,21 @@ export default function FeaturedCars() {
         <div className="container">
           <div className="row g-4">
             <h2>Featured Cars</h2>
-            {carsData.map((car) => (
-              <Card key={car._id} car={car} />
-            ))}
+            {pending ? (
+              <div className="col-lg-1 col-md-1 w-100">
+                <div className="service-item bg-light rounded h-100 p-5 w-100">
+                  <Spinner />
+                  <h4 className="mb-3">
+                    <Spinner />
+                  </h4>
+                  <div className="mb-3">
+                    <Spinner />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              cars.map((car) => <Card key={car._id} car={car} />)
+            )}
           </div>
         </div>
       </div>

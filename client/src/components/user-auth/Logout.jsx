@@ -4,6 +4,16 @@ import Spinner from "../spinner/Spinner";
 
 export default function Logout() {
   const { pending } = useLogout();
-  console.log(pending);
-  return <>{pending ? <Spinner /> : <Navigate to="/" />}</>;
+
+  return (
+    <>
+      {pending ? (
+        <div className="container d-flex justify-content-center align-items-center min-vh-100 bg-light">
+          <Spinner />{" "}
+        </div>
+      ) : (
+        <Navigate to="/" />
+      )}
+    </>
+  );
 }

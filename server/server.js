@@ -1461,18 +1461,21 @@
         brand: "Vauxhall",
         model: "Mokka",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/2016_Vauxhall_Mokka_Exclusiv_Turbo_1.4.jpg/800px-2016_Vauxhall_Mokka_Exclusiv_Turbo_1.4.jpg?20171005141502",
+        featured: true,
       },
       "02": {
         _id: "02",
         brand: "Kia",
         model: "Seltos",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Kia_Seltos_SP2_PE_Snow_White_Pearl_%286%29_%28cropped%29.jpg/800px-Kia_Seltos_SP2_PE_Snow_White_Pearl_%286%29_%28cropped%29.jpg?20230122032934",
+        featured: true,
       },
       "03": {
         _id: "03",
         brand: "Nissan",
         model: "Juke",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Nissan_Juke_%28F16%29_IMG_4903.jpg/800px-Nissan_Juke_%28F16%29_IMG_4903.jpg?20210706183610",
+        featured: false,
       },
     },
     recipes: {
