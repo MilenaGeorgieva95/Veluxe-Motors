@@ -1,4 +1,4 @@
-import PillBtn from "../Buttons/PillBtn";
+import PillBtn from "../common-buttons/PillBtn";
 import styles from "./DealCard.module.css";
 
 export default function DealCard({ title, text, btnTxt, imgSrc }) {

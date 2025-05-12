@@ -1,7 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
-import BackToTopBtn from "./components/Buttons/BackToTopBtn";
-import Footer from "./footer/Footer";
+
 import Nav from "./components/navigation/Nav";
 import Home from "./components/home/Home";
 import MyProfile from "./components/my-profile/MyProfile";
@@ -15,6 +14,9 @@ import AuthGuard from "./components/guards/AuthGuard";
 import Appointment from "./components/appointment/Appointment";
 import AboutUs from "./components/about-us/AboutUs";
 import "react-datepicker/dist/react-datepicker.css";
+import Footer from "./components/footer/Footer";
+import BackToTopBtn from "./components/common-buttons/BackToTopBtn";
+import CarDetails from "./components/car-details/CarDetails";
 
 function App() {
   const [user, setUser] = useState("");
@@ -34,7 +36,8 @@ function App() {
         </Route>
         <Route path="/catalog-cars" element={<CatalogCars />} />
         <Route path="/catalog-vans" element={<MyProfile />} />
-
+        <Route path="/catalog-cars/:carId/details" element={<CarDetails />} />
+        <Route path="/catalog-cars/:vanId/details" />
         <Route path="/about" element={<AboutUs />} />
       </Routes>
       <Footer />
