@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { useLogin } from "../../api/authApi";
 import { UserContext } from "../contexts/UserContext";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function Login() {
   const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const { login } = useLogin();
   const loginHandler = async (formData) => {
     const formValues = Object.fromEntries(formData);
@@ -12,6 +13,7 @@ export default function Login() {
     try {
       const authData = await login(formValues.email, formValues.password);
       setUser(authData);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }

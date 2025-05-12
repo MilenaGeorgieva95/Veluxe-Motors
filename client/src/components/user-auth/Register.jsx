@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { useLogin, useRegister } from "../../api/authApi";
 import { UserContext } from "../contexts/UserContext";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function Register() {
   const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const { register } = useRegister();
   const registerHandler = async (formData) => {
     const formValues = Object.fromEntries(formData);
@@ -16,6 +17,7 @@ export default function Register() {
         formValues.password
       );
       setUser(authData);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
