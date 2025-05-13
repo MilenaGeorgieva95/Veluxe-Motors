@@ -5,7 +5,6 @@ import { useNavigate } from "react-router";
 
 export default function CreateCar() {
   const [showCreate, setShowCreate] = useState(false);
-  const navigate = useNavigate();
   const showCreateHandler = () => {
     setShowCreate(true);
   };
@@ -26,7 +25,6 @@ export default function CreateCar() {
         location: "",
       });
       setShowCreate(false);
-      navigate("/my-profile");
     } catch (error) {
       console.log(error.message);
     }

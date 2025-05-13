@@ -17,6 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Footer from "./components/footer/Footer";
 import BackToTopBtn from "./components/common-buttons/BackToTopBtn";
 import CarDetails from "./components/car-details/CarDetails";
+import GuestGuard from "./components/guards/GuestGuard";
 
 function App() {
   const [user, setUser] = useState("");
@@ -24,8 +25,10 @@ function App() {
     <UserContext.Provider value={{ user, setUser }}>
       <Nav />
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route element={<GuestGuard />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
 
         <Route path="/" element={<Home />} />
         <Route element={<AuthGuard />}>
