@@ -3,7 +3,6 @@ import { request } from "../utils/requester";
 import { UserContext } from "../components/contexts/UserContext";
 
 const baseUrl = "/data/cars";
-const detailsUrl = "/data/cardetails";
 
 export const useCars = () => {
   const [cars, setCars] = useState([]);
@@ -27,12 +26,9 @@ export const useCar = (carId) => {
   const [pending, setPending] = useState(false);
   useEffect(() => {
     setPending(true);
-    const searchParams = new URLSearchParams({
-      where: `_carId="${carId}"`,
-    });
-    request.get(`${detailsUrl}/?${searchParams.toString()}`).then((data) => {
+    request.get(`${baseUrl}/${carId}`).then((data) => {
       setPending(false);
-      setCar(data[0]);
+      setCar(data);
     });
   }, [carId]);
   return { pending, car };
@@ -63,6 +59,8 @@ export const useCreateCar = () => {
   console.log(user);
 
   const create = (carData) => {
+    console.log(carData);
+
     return request.post(baseUrl, carData, accessToken);
   };
   return { create };

@@ -34,7 +34,7 @@ export default function CarDetails() {
 
               <h5>Features</h5>
               <ul className="list-group list-group-flush mb-3">
-                {car.features?.map((feature, idx) => (
+                {car.features?.split(", ").map((feature, idx) => (
                   <li key={idx} className="list-group-item">
                     {feature}
                   </li>

@@ -7,6 +7,7 @@ export default function CreateCarForm({ onClose, onCreate }) {
             <div className="col-12 col-sm-6">
               <input
                 type="text"
+                name="brand"
                 className="form-control border-0"
                 placeholder="Brand"
                 style={{ height: "55px" }}
@@ -14,6 +15,7 @@ export default function CreateCarForm({ onClose, onCreate }) {
             </div>
             <div className="col-12 col-sm-6">
               <select
+                name="type"
                 className="form-select border-0"
                 style={{ height: "55px" }}
               >
@@ -26,6 +28,7 @@ export default function CreateCarForm({ onClose, onCreate }) {
             </div>
             <div className="col-12 col-sm-6">
               <input
+                name="model"
                 type="text"
                 className="form-control border-0"
                 placeholder="Model"
@@ -39,8 +42,8 @@ export default function CreateCarForm({ onClose, onCreate }) {
                 style={{ height: "55px" }}
               >
                 <option defaultChecked>Transmission</option>
-                <option value="automatic">Automatic</option>
-                <option value="manual">Manual</option>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
               </select>
             </div>
             <div className="col-12 col-sm-6">
@@ -71,32 +74,69 @@ export default function CreateCarForm({ onClose, onCreate }) {
               />
             </div>
             <div className="col-12 col-sm-6">
-              <select
-                name="location"
-                className="form-select border-0"
-                style={{ height: "55px" }}
-              >
-                <option defaultChecked>Location</option>
-                <option value="london">London</option>
-                <option value="birmingham">Birmingham</option>
-                <option value="coventry">Coventry</option>
-                <option value="manchester">Manchester</option>
-              </select>
-            </div>
-            <div className="col-12">
               <textarea
                 name="features"
                 className="form-control border-0"
-                rows="5"
+                rows="2"
                 placeholder="Features"
               ></textarea>
             </div>
-            <div className="col-9">
+            <div className="col-12 col-sm-6">
+              <div
+                className="p-2 px-5 form-group bg-white rounded "
+                style={{ height: "auto" }}
+              >
+                <label className="form-label">Available Locations</label>
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name="location"
+                    value="Sofia"
+                    id="location-sofia"
+                  />
+                  <label className="form-check-label" htmlFor="location-sofia">
+                    Sofia
+                  </label>
+                </div>
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name="location"
+                    value="Birmingham"
+                    id="location-birmingham"
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="location-birmingham"
+                  >
+                    Birmingham
+                  </label>
+                </div>
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name="location"
+                    value="Manchester"
+                    id="location-manchester"
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="location-manchester"
+                  >
+                    Manchester
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-12 col-sm-6">
               <button className="btn btn-primary w-100 py-3" type="submit">
                 Save New Car
               </button>
-            </div>
-            <div className="col-3">
+
               <span
                 onClick={onClose}
                 className="btn btn-danger w-100 py-3"

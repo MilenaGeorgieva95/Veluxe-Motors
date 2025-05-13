@@ -17,7 +17,7 @@ export default function CreateCar() {
 
   const createCarHandler = async (formData) => {
     try {
-      const newCar = create(formData);
+      const newCar = create(Object.fromEntries(formData));
       setShowCreate(false);
       navigate("/");
     } catch (error) {
