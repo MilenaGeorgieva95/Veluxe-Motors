@@ -26,9 +26,12 @@ export const useCar = (carId) => {
   const [pending, setPending] = useState(false);
   useEffect(() => {
     setPending(true);
-    request.get(`/data/cardetails/${carId}`).then((data) => {
+    const searchParams = new URLSearchParams({
+      where: `_carId="${carId}"`,
+    });
+    request.get(`/data/cardetails/?${searchParams.toString()}`).then((data) => {
       setPending(false);
-      setCar(data);
+      setCar(data[0]);
     });
   }, [carId]);
   return { pending, car };
