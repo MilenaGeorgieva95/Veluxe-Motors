@@ -31,8 +31,12 @@ export const useAppointments = (location) => {
 
 export const useCreateAppointment = () => {
   const { user } = useContext(UserContext);
-  const create = (appointmentData) => {
-    return request.post(baseUrl, appointmentData, user.accessToken);
+  const create = async (appointmentData) => {
+    try {
+      return await request.post(baseUrl, appointmentData, user.accessToken);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return { create };
 };

@@ -7,8 +7,7 @@ export default function Appointment() {
   const [location, setLocation] = useState("Sofia");
   const { create } = useCreateAppointment();
   const reserveAppointmentHandler = async (date) => {
-    const newAppt = await create({ location, date });
-    console.log(newAppt);
+    create({ location, date });
   };
   return (
     <>
