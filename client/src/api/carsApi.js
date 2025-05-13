@@ -62,12 +62,32 @@ export const useFeaturedCars = () => {
 export const useCreateCar = () => {
   const { user } = useContext(UserContext);
   const accessToken = user?.accessToken;
-  console.log(user);
-
   const create = (carData) => {
     console.log(carData);
 
     return request.post(baseUrl, carData, accessToken);
   };
   return { create };
+};
+
+export const useMyCars = () => {
+  const { user } = useContext(UserContext);
+  const [myCars, setMyCars] = useState([]);
+  const [pending, setPending] = useState(false);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams({
+      where: `_ownerId="${user._id}"`,
+      select: "_id,brand,model,img",
+    });
+    setPending(true);
+    try {
+      request.get(`${baseUrl}?${searchParams.toString()}`).then(setMyCars);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setPending(false);
+    }
+  }, []);
+  return { myCars, pending };
 };

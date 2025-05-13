@@ -4,7 +4,6 @@ import Card from "../cards/Card";
 
 export default function CatalogCars() {
   const { cars, pending } = useCars();
-  console.log(cars);
 
   return (
     <>

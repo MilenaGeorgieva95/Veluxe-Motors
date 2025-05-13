@@ -1,0 +1,19 @@
+.detailsBtn {
+  color: #12724a;
+  padding: 0.3em 1.5em;
+  border: 2px solid #12724a;
+  border-radius: 20px;
+  background-color: #ffff;
+  transition: 0.3s;
+}
+
+.detailsBtn:hover,
+.detailsBtn:active {
+  color: #ffff;
+  background-color: #0463fa;
+  padding: 0.3em 2em;
+}
+
+cardContainer img {
+  max-width: 70%;
+}
