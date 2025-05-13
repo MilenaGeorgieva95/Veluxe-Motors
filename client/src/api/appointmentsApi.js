@@ -12,7 +12,7 @@ export const useAppointments = (location) => {
     setPending(true);
     const searchParams = new URLSearchParams({
       where: `location="${location}"`,
-      //   select: "date",
+      select: "date",
     });
     try {
       request
@@ -39,4 +39,22 @@ export const useCreateAppointment = () => {
     }
   };
   return { create };
+};
+
+export const useMyAppointments = () => {
+  const [appointments, setAppointments] = useState([]);
+  const { user } = useContext(UserContext);
+  const searchParams = new URLSearchParams({
+    where: `_ownerId="${user._id}"`,
+  });
+  useEffect(() => {
+    try {
+      request
+        .get(`${baseUrl}?${searchParams.toString()}`)
+        .then(setAppointments);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+  return { appointments };
 };
