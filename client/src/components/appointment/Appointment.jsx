@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router";
 import Calendar from "./Calendar";
+import { useState } from "react";
 
 export default function Appointment() {
+  const [location, setLocation] = useState("Sofia");
+
   return (
     <>
       <div className="container-xxl py-5">
@@ -11,7 +14,25 @@ export default function Appointment() {
               <h3 className="mb-4">
                 Schedule Your Visit with a Veluxe Motors Specialist
               </h3>
-              <Calendar />
+              <div className="container my-5">
+                <h5 className="text-center mb-3">Select Office Location</h5>
+
+                <div className="d-flex justify-content-center">
+                  {" "}
+                  <select
+                    name="location"
+                    className="form-select border-1"
+                    onChange={(e) => setLocation(e.target.value)}
+                  >
+                    <option defaultChecked value="Sofia">
+                      Sofia
+                    </option>
+                    <option value="Birmingham">Birmingham</option>
+                    <option value="Manchester">Manchester</option>
+                  </select>
+                </div>
+              </div>
+              <Calendar location={location} />
             </div>
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
               {" "}
