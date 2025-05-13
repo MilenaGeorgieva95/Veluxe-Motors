@@ -18,7 +18,6 @@ export default function MyBookings() {
                 >
                   <div>
                     <small className="text-muted">Office Location: </small>
-
                     <small className="fw-bold">{appointment.location}</small>
                     <br />
                     <small className="text-muted">
