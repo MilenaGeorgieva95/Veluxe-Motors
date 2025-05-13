@@ -1,11 +1,13 @@
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useCar } from "../../api/carsApi";
 import CarCalendar from "./CarCalendar";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 export default function CarDetails() {
   const { carId } = useParams();
   const { car, pending } = useCar(carId);
-  console.log(car);
+  const { user } = useContext(UserContext);
 
   return (
     <div className="container my-4">
@@ -61,8 +63,14 @@ export default function CarDetails() {
               <p className="card-text">
                 Ready to take this car for a spin? Reserve now!
               </p>
-
-              <CarCalendar locations={car.locations} />
+              {user ? (
+                <CarCalendar locations={car.locations} />
+              ) : (
+                <p className="mb-auto">
+                  <Link to={"/login"}>Login</Link> or{" "}
+                  <Link to={"/register"}>Register</Link> to create a booking.
+                </p>
+              )}
             </div>
           </div>
         </div>

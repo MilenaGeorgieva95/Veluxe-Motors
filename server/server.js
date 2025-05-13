@@ -1466,12 +1466,10 @@
         transmission: "Automatic",
         seats: 5,
         bagsCapacity: 2,
-        features: [
-          "Air Conditioning",
-          "Electric Vehicle",
-          "Estimated driving range - 200 km",
-        ],
+        features:
+          "Air Conditioning, Electric Vehicle, Estimated driving range - 200 km",
         locations: ["London", "Sofia", "Birmingham", "Manchester"],
+        _createdOn: 1614260681374,
       },
       "8f414b4f-ab39-4d36-bedb-2ad69da9c820": {
         _id: "8f414b4f-ab39-4d36-bedb-2ad69da9c820",
@@ -1483,13 +1481,10 @@
         transmission: "Automatic",
         seats: 5,
         bagsCapacity: 2,
-        features: [
-          "Air Conditioning",
-          "Plug-in Hybrid Vehicle",
-          "GPS navigation",
-          "Rated No. 4 of Best Subcompact SUVs for 2022 by U.S. News & World Report",
-        ],
+        features:
+          "Air Conditioning, Plug-in Hybrid Vehicle, GPS navigation, Rated No. 4 of Best Subcompact SUVs for 2022 by U.S. News & World Report",
         locations: ["Coventry", "Sofia", "Birmingham", "Manchester"],
+        _createdOn: 1614260681367,
       },
       "8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
         _id: "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
@@ -1501,15 +1496,10 @@
         transmission: "Automatic",
         seats: 5,
         bagsCapacity: 3,
-        features: [
-          "Air Conditioning",
-          "USB connectivity",
-          "Front-engine, all-wheel-drive",
-          "NissanConnect GPS navigation",
-          "Rear-view camera",
-          "Bluetooth audio",
-        ],
+        features:
+          "Air Conditioning, USB connectivity, Front-engine, all-wheel-drive, NissanConnect GPS navigation, Rear-view camera, Bluetooth audio",
         locations: ["Sofia", "Birmingham", "Manchester"],
+        _createdOn: 1614260681365,
       },
     },
     comments: {

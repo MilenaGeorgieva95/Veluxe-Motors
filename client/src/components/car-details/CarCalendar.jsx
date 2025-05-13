@@ -12,7 +12,7 @@ export default function CarCalendar({ locations }) {
     console.log(selectedLocation);
   };
   return (
-    <div className="container my-5">
+    <div className="container mt-5 mb-auto">
       <form action={selectLocationHandler}>
         <h5 className="text-center mb-3">Select Location</h5>
 

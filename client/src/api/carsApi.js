@@ -40,8 +40,14 @@ export const useFeaturedCars = () => {
 
   useEffect(() => {
     setPending(true);
+    const PAGE_SIZE = 3;
+    const searchParams = new URLSearchParams({
+      sortBy: "_createdOn desc",
+      pageSize: PAGE_SIZE,
+      select: "_id,brand,model,img",
+    });
     try {
-      request.get(`${baseUrl}?featured=true`).then((data) => {
+      request.get(`${baseUrl}?${searchParams.toString()}`).then((data) => {
         setCars(data);
         setPending(false);
       });
