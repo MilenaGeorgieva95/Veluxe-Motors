@@ -1495,7 +1495,7 @@
           "Electric Vehicle",
           "Estimated driving range - 200 km",
         ],
-        location: ["London"],
+        locations: ["London", "Sofia", "Birmingham", "Manchester"],
       },
       "8f414b4f-ab39-4d36-bedb-2ad69da9c822": {
         _id: "8f414b4f-ab39-4d36-bedb-2ad69da9c822",
@@ -1513,7 +1513,7 @@
           "GPS navigation",
           "Rated No. 4 of Best Subcompact SUVs for 2022 by U.S. News & World Report",
         ],
-        location: ["Coventry"],
+        locations: ["Coventry", "Sofia", "Birmingham", "Manchester"],
       },
       "8f414b4f-ab39-4d36-bedb-2ad69da9c833": {
         _id: "8f414b4f-ab39-4d36-bedb-2ad69da9c833",
@@ -1533,7 +1533,7 @@
           "Rear-view camera",
           "Bluetooth audio",
         ],
-        location: ["Birmingham"],
+        locations: ["Sofia", "Birmingham", "Manchester"],
       },
     },
     comments: {

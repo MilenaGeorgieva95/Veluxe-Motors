@@ -1,9 +1,10 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 
-export default function CarCalendar() {
+export default function CarCalendar({ locations }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedLocation, setSelectedLocation] = useState("sofia");
+  console.log(locations);
 
   const selectLocationHandler = (formData) => {
     setSelectedLocation(formData.get("location"));
@@ -18,11 +19,13 @@ export default function CarCalendar() {
         <div className="d-flex justify-content-center">
           {" "}
           <select name="location" className="form-select border-1">
-            <option defaultChecked value="sofia">
-              Sofia
-            </option>
-            <option value="birmingham">Birmingham</option>
-            <option value="manchester">Manchester</option>
+            {locations?.map((location) => {
+              return (
+                <option key={location} value={location}>
+                  {location}
+                </option>
+              );
+            })}
           </select>
         </div>
         <h5 className="text-center m-3">Select a Date</h5>

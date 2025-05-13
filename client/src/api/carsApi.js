@@ -3,6 +3,7 @@ import { request } from "../utils/requester";
 import { UserContext } from "../components/contexts/UserContext";
 
 const baseUrl = "/data/cars";
+const detailsUrl = "/data/cardetails";
 
 export const useCars = () => {
   const [cars, setCars] = useState([]);
@@ -29,7 +30,7 @@ export const useCar = (carId) => {
     const searchParams = new URLSearchParams({
       where: `_carId="${carId}"`,
     });
-    request.get(`/data/cardetails/?${searchParams.toString()}`).then((data) => {
+    request.get(`${detailsUrl}/?${searchParams.toString()}`).then((data) => {
       setPending(false);
       setCar(data[0]);
     });

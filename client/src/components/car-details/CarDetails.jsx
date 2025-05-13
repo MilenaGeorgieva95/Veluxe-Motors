@@ -61,7 +61,8 @@ export default function CarDetails() {
               <p className="card-text">
                 Ready to take this car for a spin? Reserve now!
               </p>
-              <CarCalendar />
+
+              <CarCalendar locations={car.locations} />
             </div>
           </div>
         </div>
