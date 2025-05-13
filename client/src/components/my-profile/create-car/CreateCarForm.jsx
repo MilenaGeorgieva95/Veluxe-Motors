@@ -20,10 +20,10 @@ export default function CreateCarForm({ onClose, onCreate }) {
                 style={{ height: "55px" }}
               >
                 <option defaultChecked>Fuel Type</option>
-                <option value="electric">Electric</option>
-                <option value="hybrid">Hybrid</option>
-                <option value="petrol">Petrol</option>
-                <option value="diesel">Diesel</option>
+                <option value="Electric">Electric</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
               </select>
             </div>
             <div className="col-12 col-sm-6">
