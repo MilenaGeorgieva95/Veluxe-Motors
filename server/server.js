@@ -1512,34 +1512,32 @@
       },
     },
     bookings: {},
-    appointments: {
-      Sofia: [
-        {
-          _id: "01",
-          userId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
-          date: "Tue May 20 2025 03:00:00 GMT+0300",
-        },
-      ],
-      Birmingham: [
-        {
-          _id: "02",
-          userId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
-          date: "Tue May 21 2025 03:00:00 GMT+0300",
-        },
-      ],
-      Manchester: [
-        {
-          _id: "03",
-          userId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
-          date: "Tue May 22 2025 03:00:00 GMT+0300",
-        },
-        {
-          _id: "03",
-          userId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
-          date: "Tue May 23 2025 03:00:00 GMT+0300",
-        },
-      ],
-    },
+    appointments: [
+      {
+        location: "Sofia",
+        _id: "01",
+        userId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+        date: "Tue May 20 2025 03:00:00 GMT+0300",
+      },
+      {
+        location: "Birmingham",
+        _id: "02",
+        userId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+        date: "Tue May 21 2025 03:00:00 GMT+0300",
+      },
+      {
+        location: "Manchester",
+        _id: "03",
+        userId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+        date: "Tue May 22 2025 03:00:00 GMT+0300",
+      },
+      {
+        location: "Manchester",
+        _id: "03",
+        userId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+        date: "Tue May 23 2025 03:00:00 GMT+0300",
+      },
+    ],
   };
   var rules$1 = {
     users: {

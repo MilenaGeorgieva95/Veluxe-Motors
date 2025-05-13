@@ -1,10 +1,15 @@
 import { useNavigate } from "react-router";
 import Calendar from "./Calendar";
 import { useState } from "react";
+import { useCreateAppointment } from "../../api/appointmentsApi";
 
 export default function Appointment() {
   const [location, setLocation] = useState("Sofia");
-
+  const { create } = useCreateAppointment();
+  const reserveAppointmentHandler = async (date) => {
+    const newAppt = await create({ location, date });
+    console.log(newAppt);
+  };
   return (
     <>
       <div className="container-xxl py-5">
@@ -32,7 +37,10 @@ export default function Appointment() {
                   </select>
                 </div>
               </div>
-              <Calendar location={location} />
+              <Calendar
+                location={location}
+                createAppointment={reserveAppointmentHandler}
+              />
             </div>
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
               {" "}
