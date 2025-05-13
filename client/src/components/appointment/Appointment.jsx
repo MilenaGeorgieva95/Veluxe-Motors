@@ -6,8 +6,10 @@ import { useCreateAppointment } from "../../api/appointmentsApi";
 export default function Appointment() {
   const [location, setLocation] = useState("Sofia");
   const { create } = useCreateAppointment();
-  const reserveAppointmentHandler = async (date) => {
+  const navigate = useNavigate();
+  const reserveAppointmentHandler = (date) => {
     create({ location, date });
+    navigate("/my-profile");
   };
   return (
     <>

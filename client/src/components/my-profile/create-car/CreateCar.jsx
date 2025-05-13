@@ -26,7 +26,7 @@ export default function CreateCar() {
         location: "",
       });
       setShowCreate(false);
-      navigate("/");
+      navigate("/my-profile");
     } catch (error) {
       console.log(error.message);
     }
