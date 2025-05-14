@@ -1,13 +1,16 @@
 import { Link, useParams } from "react-router";
 import { useCar } from "../../api/carsApi";
 import CarCalendar from "./CarCalendar";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 export default function CarDetails() {
   const { carId } = useParams();
   const { car, pending } = useCar(carId);
   const { user } = useContext(UserContext);
+  console.log(car);
+
+  const [selectedLocation, setSelectedLocation] = useState("Sofia");
 
   return (
     <div className="container my-4">
@@ -72,7 +75,27 @@ export default function CarDetails() {
                 Ready to take this car for a spin? Reserve now!
               </p>
               {user ? (
-                <CarCalendar locations={car.locations} />
+                <div className="container mt-5 mb-auto">
+                  <h5 className="text-center mb-3">Select Location</h5>
+
+                  <div className="d-flex justify-content-center">
+                    {" "}
+                    <select
+                      name="location"
+                      className="form-select border-1"
+                      onChange={(e) => setSelectedLocation(e.target.value)}
+                    >
+                      {car.locations?.map((location) => {
+                        return (
+                          <option key={location} value={location}>
+                            {location}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                  <CarCalendar location={selectedLocation} />
+                </div>
               ) : (
                 <p className="mb-auto">
                   <Link to={"/login"}>Login</Link> or{" "}
