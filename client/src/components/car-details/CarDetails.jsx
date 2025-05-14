@@ -22,16 +22,24 @@ export default function CarDetails() {
           <div className="card mb-4 h-100">
             <div className="card-body">
               <h3 className="card-title">
-                {car.brand} {car.model}
+                {car.brand} - {car.model}
               </h3>
+
               <p className="card-text">
-                <strong>Type:</strong> {car.type}
+                <small className="text-muted">Price per Day: </small>
+                <span>${car.price}</span>
                 <br />
-                <strong>Transmission:</strong> {car.transmission}
+                <small className="text-muted">Type:</small>{" "}
+                <span>{car.type}</span>
                 <br />
-                <strong>Seats:</strong> {car.seats}
+                <small className="text-muted">Transmission:</small>{" "}
+                <span>{car.transmission}</span>
                 <br />
-                <strong>Bags Capacity:</strong> {car.bagsCapacity}
+                <small className="text-muted">Seats:</small>{" "}
+                <span>{car.seats}</span>
+                <br />
+                <small className="text-muted">Bags Capacity:</small>{" "}
+                <span>{car.bagsCapacity}</span>
               </p>
 
               <h5>Features</h5>

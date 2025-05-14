@@ -82,6 +82,15 @@ export default function CreateCarForm({ onClose, onCreate }) {
               ></textarea>
             </div>
             <div className="col-12 col-sm-6">
+              <input
+                name="price"
+                type="number"
+                className="form-control border-0"
+                placeholder="Price per day $ "
+                style={{ height: "55px" }}
+              />
+            </div>
+            <div className="col-12 col-sm-6">
               <div
                 className="p-2 px-5 form-group bg-white rounded "
                 style={{ height: "auto" }}
@@ -131,12 +140,12 @@ export default function CreateCarForm({ onClose, onCreate }) {
                 </div>
               </div>
             </div>
-
             <div className="col-12 col-sm-6">
               <button className="btn btn-primary w-100 py-3" type="submit">
                 Save New Car
               </button>
-
+            </div>
+            <div className="col-12 col-sm-6">
               <span
                 onClick={onClose}
                 className="btn btn-danger w-100 py-3"
