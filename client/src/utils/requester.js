@@ -1,4 +1,4 @@
-const host = import.meta.env.VITE_APP_SERVER_URL;
+const host=import.meta.env.VITE_APP_SERVER_URL;
 
 export async function requester(method, url, body, token) {
   const options = {
