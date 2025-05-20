@@ -15,7 +15,7 @@ export default function MyProfile() {
         />
         {/* <MyBookings /> */}
         <CreateCar />
-        {/* <MyCars /> */}
+        <MyCars />
       </div>
     </>
   );

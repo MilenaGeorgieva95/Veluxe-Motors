@@ -81,13 +81,10 @@ export const useMyCars = () => {
   const [pending, setPending] = useState(false);
 
   useEffect(() => {
-    const searchParams = new URLSearchParams({
-      where: `_ownerId="${user._id}"`,
-      select: "_id,brand,model,img",
-    });
+    const searchParams = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${user.userId}"}}`
     setPending(true);
     try {
-      request.get(`${baseUrl}?${searchParams.toString()}`).then(setMyCars);
+      request.get(`${baseUrl}?${searchParams.toString()}`).then(data=>setMyCars(data.results));
     } catch (error) {
       console.log(error);
     } finally {

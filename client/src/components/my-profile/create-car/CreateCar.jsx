@@ -16,20 +16,22 @@ export default function CreateCar() {
 
   const createCarHandler = async (formData) => {
     const locations = formData.getAll("location");
-const carData=Object.fromEntries(formData)
+    const carData = Object.fromEntries(formData);
     try {
       const newCar = create({
-        model:carData.model,
-        brand:carData.brand,
-        img:carData.img,
-        type:carData.type,
-        transmission:carData.transmission,
-        seats:Number(carData.seats),
-        bagsCapacity:Number(carData.bagsCapacity),
-        price:Number(carData.price),
-        features:carData.features,
-        locations
+        model: carData.model,
+        brand: carData.brand,
+        type: carData.type,
+        transmission: carData.transmission,
+        seats: Number(carData.seats),
+        bagsCapacity: Number(carData.bagsCapacity),
+        price: Number(carData.price),
+        features: carData.features,
+        locations,
       });
+      if (carData.img) {
+        newCar.img = carData.img;
+      }
       setShowCreate(false);
     } catch (error) {
       console.log(error.message);
