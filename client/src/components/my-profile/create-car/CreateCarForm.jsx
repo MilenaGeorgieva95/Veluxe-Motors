@@ -10,6 +10,7 @@ export default function CreateCarForm({ onClose, onCreate }) {
                 name="brand"
                 className="form-control border-0"
                 placeholder="Brand"
+                required
                 style={{ height: "55px" }}
               />
             </div>
@@ -32,6 +33,7 @@ export default function CreateCarForm({ onClose, onCreate }) {
                 type="text"
                 className="form-control border-0"
                 placeholder="Model"
+                required
                 style={{ height: "55px" }}
               />
             </div>
