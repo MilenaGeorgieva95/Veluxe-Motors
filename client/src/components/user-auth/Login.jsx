@@ -11,8 +11,8 @@ export default function Login() {
     const formValues = Object.fromEntries(formData);
 
     try {
-      const authData = await login(formValues.email, formValues.password);
-      setUser(authData);
+      const authData = await login(formValues.username, formValues.password);
+      setUser({userId:authData.objectId,token:authData.sessionToken,  username:formValues.username});
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -29,16 +29,16 @@ export default function Login() {
           <h4 className="card-title text-center text-success mb-4">LOGIN</h4>
           <form action={loginHandler}>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label text-success">
-                Email address
+              <label htmlFor="username" className="form-label text-success">
+                Username
               </label>
               <input
-                type="email"
+                type="username"
                 className="form-control border-success"
-                id="email"
-                placeholder="Enter email"
+                id="username"
+                placeholder="Enter username"
                 required
-                name="email"
+                name="username"
               />
             </div>
             <div className="mb-3">

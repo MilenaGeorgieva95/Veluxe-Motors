@@ -16,7 +16,7 @@ export default function Register() {
         formValues.email,
         formValues.password
       );
-      setUser({userId:authData.objectId,token:authData.sessionToken, email:formValues.email, username:formValues.username});
+      setUser({userId:authData.objectId,token:authData.sessionToken, username:formValues.username});
       navigate("/");
     } catch (error) {
       console.log(error);

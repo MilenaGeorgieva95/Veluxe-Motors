@@ -11,9 +11,6 @@ export async function requester(method, url, body, token) {
       'X-Parse-Revocable-Session': 1
     },
   };
-  // if (body || token) {
-  //   options.headers = {};
-  // }
 
   if (body) {
     options.headers["Content-Type"] = "application/json";

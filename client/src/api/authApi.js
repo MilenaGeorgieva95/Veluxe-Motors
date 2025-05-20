@@ -3,9 +3,9 @@ import { request } from "../utils/requester";
 import { UserContext } from "../components/contexts/UserContext";
 
 export const useLogin = () => {
-  const login = async (email, password) => {
-    const loginData = await request.post(`${baseUrl}/login`, {
-      email,
+  const login = async (username, password) => {
+    const loginData = await request.post('/login', {
+      username,
       password,
     });
     return loginData;
