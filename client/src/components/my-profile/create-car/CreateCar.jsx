@@ -16,12 +16,19 @@ export default function CreateCar() {
 
   const createCarHandler = async (formData) => {
     const locations = formData.getAll("location");
-
+const carData=Object.fromEntries(formData)
     try {
       const newCar = create({
-        ...Object.fromEntries(formData),
-        locations,
-        location: "",
+        model:carData.model,
+        brand:carData.brand,
+        img:carData.img,
+        type:carData.type,
+        transmission:carData.transmission,
+        seats:Number(carData.seats),
+        bagsCapacity:Number(carData.bagsCapacity),
+        price:Number(carData.price),
+        features:carData.features,
+        locations
       });
       setShowCreate(false);
     } catch (error) {

@@ -13,9 +13,9 @@ export default function MyProfile() {
             "Manage your bookings, listed vehicles, membership, and personal deals—all in one place."
           }
         />
-        <MyBookings />
+        {/* <MyBookings /> */}
         <CreateCar />
-        <MyCars />
+        {/* <MyCars /> */}
       </div>
     </>
   );

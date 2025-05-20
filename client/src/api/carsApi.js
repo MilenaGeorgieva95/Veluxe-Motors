@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { request } from "../utils/requester";
 import { UserContext } from "../components/contexts/UserContext";
 
-const baseUrl = "/cars";
+const baseUrl = "/classes/cars";
 
 export const useCars = () => {
   const [cars, setCars] = useState([]);
@@ -61,8 +61,13 @@ export const useFeaturedCars = () => {
 
 export const useCreateCar = () => {
   const { user } = useContext(UserContext);
-  const accessToken = user?.accessToken;
+  const accessToken = user?.token;
   const create = (carData) => {
+    carData.ownerId={
+    __type: 'Pointer',
+    className: '_User',
+    objectId: user.userId
+  }
     console.log(carData);
 
     return request.post(baseUrl, carData, accessToken);
