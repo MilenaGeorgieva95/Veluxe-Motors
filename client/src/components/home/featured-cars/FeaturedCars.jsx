@@ -5,7 +5,7 @@ import { useFeaturedCars } from "../../../api/carsApi";
 import Spinner from "../../spinner/Spinner";
 
 export default function FeaturedCars() {
-  const { cars, pending } = useFeaturedCars();
+  // const { cars, pending } = useFeaturedCars();
 
   return (
     <>
@@ -25,7 +25,7 @@ export default function FeaturedCars() {
         <div className="container">
           <div className="row g-4">
             <h2>Featured Cars</h2>
-            {pending ? (
+            {/* {pending ? (
               <div className="col-lg-1 col-md-1 w-100">
                 <div className="service-item bg-light rounded h-100 p-5 w-100">
                   <Spinner />
@@ -39,7 +39,7 @@ export default function FeaturedCars() {
               </div>
             ) : (
               cars.map((car) => <Card key={car._id} car={car} />)
-            )}
+            )} */}
           </div>
         </div>
       </div>

@@ -1,12 +1,19 @@
-const host=import.meta.env.VITE_APP_SERVER_URL;
+const host = import.meta.env.VITE_APP_host;
+const appId = import.meta.env.VITE_APP_appId
+const apiKey = import.meta.env.VITE_APP_apiKey
 
 export async function requester(method, url, body, token) {
   const options = {
     method,
+    headers: {
+      'X-Parse-Application-Id': appId,
+      'X-Parse-REST-API-Key': apiKey,
+      'X-Parse-Revocable-Session': 1
+    },
   };
-  if (body || token) {
-    options.headers = {};
-  }
+  // if (body || token) {
+  //   options.headers = {};
+  // }
 
   if (body) {
     options.headers["Content-Type"] = "application/json";
@@ -14,7 +21,7 @@ export async function requester(method, url, body, token) {
   }
 
   if (token) {
-    options.headers["X-Authorization"] = token;
+    options.headers['X-Parse-Session-Token'] = token;
   }
 
   try {
@@ -25,10 +32,11 @@ export async function requester(method, url, body, token) {
       data = await res.json();
     }
 
-    if (res.status !== 200 && res.status !== 204) {
-      const error = data;
-      throw error;
-    }
+    // if (res.status !== 200 && res.status !== 204) {
+    //   const error = data;
+    //   throw error;
+    // }
+    
     return data;
   } catch (error) {
     console.log(error);

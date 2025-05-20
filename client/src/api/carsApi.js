@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { request } from "../utils/requester";
 import { UserContext } from "../components/contexts/UserContext";
 
-const baseUrl = "/data/cars";
+const baseUrl = "/cars";
 
 export const useCars = () => {
   const [cars, setCars] = useState([]);

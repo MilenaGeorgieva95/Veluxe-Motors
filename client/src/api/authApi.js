@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { request } from "../utils/requester";
 import { UserContext } from "../components/contexts/UserContext";
-const baseUrl = "/users";
 
 export const useLogin = () => {
   const login = async (email, password) => {
@@ -19,7 +18,7 @@ export const useLogin = () => {
 
 export const useRegister = () => {
   const register = async (username, email, password) => {
-    const registerData = await request.post(`${baseUrl}/register`, {
+    const registerData = await request.post('/users', {
       username,
       email,
       password,
