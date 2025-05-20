@@ -27,7 +27,7 @@ export default function Nav() {
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav ms-auto p-4 p-lg-0">
-            {user?.email && (
+            {user?.username && (
               <Link to="/my-profile" className="nav-item nav-link">
                 My Profile
               </Link>
@@ -44,7 +44,7 @@ export default function Nav() {
             <Link to="/about" className="nav-item nav-link">
               About Us
             </Link>
-            {user?.email ? (
+            {user?.username ? (
               <Link to="/logout" className="nav-item nav-link">
                 Logout
               </Link>

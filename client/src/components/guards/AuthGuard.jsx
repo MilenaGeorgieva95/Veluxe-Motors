@@ -4,7 +4,7 @@ import { UserContext } from "../contexts/UserContext";
 
 export default function AuthGuard() {
   const { user } = useContext(UserContext);
-  const isAuth = !!user?.email;
+  const isAuth = !!user?.username;
   if (!isAuth) {
     return <Navigate to={"/login"} />;
   }

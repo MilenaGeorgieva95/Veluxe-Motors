@@ -34,19 +34,19 @@ export const useLogout = () => {
   const { user, setUser } = useContext(UserContext);
   const [pending, setPending] = useState(true);
   useEffect(() => {
-    if (!user || !user.accessToken) {
+    if (!user || !user.token) {
       setPending(false);
       return;
     }
 
     try {
-      request.get(`${baseUrl}/logout`, null, user.accessToken);
+      request.get('/logout', null, user.token);
       setUser("");
       setPending(false);
     } catch (error) {
       console.log(error);
       setPending(false);
     }
-  }, [user.accessToken]);
+  }, [user.token]);
   return { pending, setPending };
 };
