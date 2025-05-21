@@ -46,19 +46,16 @@ export const useCreateReservation = () => {
 export const useMyReservations = () => {
   const [reservations, setReservations] = useState([]);
   const { user } = useContext(UserContext);
-
+  if (!user?.userId) {
+    console.error("User not authenticated");
+    return;
+  }
   useEffect(() => {
-    const fetchReservations = async () => {
-      try {
-        const searchParams = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${user.userId}"}}`;
-        request
-          .get(`${baseUrl}?${searchParams}`)
-          .then((data) => setReservations(data.results));
-      } catch (error) {
-        console.error("Failed to fetch reservations:", error);
-      }
-    };
-    fetchReservations();
+    const searchParams = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${user.userId}"}}`;
+    request
+      .get(`${baseUrl}?${searchParams}`)
+      .then((data) => setReservations(data.results))
+      .catch((error) => console.error("Failed to fetch reservations:", error));
   }, [user?.userId]);
   return { reservations };
 };

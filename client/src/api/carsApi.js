@@ -10,13 +10,11 @@ export const useCars = () => {
 
   useEffect(() => {
     setPending(true);
-    try {
-      request.get(baseUrl).then(data=>setCars(data.results));
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setPending(false);
-    }
+    request
+      .get(baseUrl)
+      .then((data) => setCars(data.results))
+      .catch((error) => console.log(error))
+      .finally(() => setPending(false));
   }, []);
   return { cars, pending };
 };
@@ -26,10 +24,14 @@ export const useCar = (carId) => {
   const [pending, setPending] = useState(false);
   useEffect(() => {
     setPending(true);
-    request.get(`${baseUrl}/${carId}`).then((data) => {
-      setPending(false);
-      setCar(data);
-    });
+    const fetchCarData = async () => {
+      request
+        .get(`${baseUrl}/${carId}`)
+        .then((data) => setCar(data))
+        .catch((error) => console.log(error.message))
+        .finally(() => setPending(false));
+    };
+    fetchCarData();
   }, [carId]);
   return { pending, car };
 };
@@ -40,30 +42,38 @@ export const useFeaturedCars = () => {
 
   useEffect(() => {
     setPending(true);
-        const searchParams = 'order=-createdAt&limit=3'
-    try {
-      request.get(`${baseUrl}?${searchParams.toString()}`).then((data) => {
+    const searchParams = "order=-createdAt&limit=3";
+    request
+      .get(`${baseUrl}?${searchParams.toString()}`)
+      .then((data) => {
         setCars(data.results);
-        setPending(false);
-      });
-    } catch (error) {
-      console.log(error);
-      setPending(false);
-    }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => setPending(false));
   }, []);
   return { cars, pending };
 };
 
 export const useCreateCar = () => {
   const { user } = useContext(UserContext);
-  const accessToken = user?.token;
-  const create = (carData) => {
-    carData.ownerId={
-    __type: 'Pointer',
-    className: '_User',
-    objectId: user.userId
+  if (!user?.userId || !user?.token) {
+    console.error("User not authenticated");
+    return;
   }
-    return request.post(baseUrl, carData, accessToken);
+  const accessToken = user?.token;
+  const create = async (carData) => {
+    carData.ownerId = {
+      __type: "Pointer",
+      className: "_User",
+      objectId: user.userId,
+    };
+    try {
+      return await request.post(baseUrl, carData, accessToken);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   return { create };
 };
@@ -74,15 +84,13 @@ export const useMyCars = (refreshKey = 0) => {
   const [pending, setPending] = useState(false);
 
   useEffect(() => {
-    const searchParams = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${user.userId}"}}`
+    const searchParams = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${user.userId}"}}`;
     setPending(true);
-    try {
-      request.get(`${baseUrl}?${searchParams}`).then(data=>setMyCars(data.results));
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setPending(false);
-    }
+    request
+      .get(`${baseUrl}?${searchParams}`)
+      .then((data) => setMyCars(data.results))
+      .catch((error) => console.log(error))
+      .finally(() => setPending(false));
   }, [user, refreshKey]);
   return { myCars, pending };
 };
