@@ -1,24 +1,26 @@
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useCar } from "../../api/carsApi";
 import CarCalendar from "./CarCalendar";
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useCreateReservation } from "../../api/reservationsApi";
+import Spinner from "../spinner/Spinner";
 
 export default function CarDetails() {
   const { carId } = useParams();
   const { car, pending } = useCar(carId);
   const { user } = useContext(UserContext);
-  const { create: createReservation } = useCreateReservation();
+  const navigate = useNavigate()
+  const { create: createReservation, pending: reservationPending} =
+    useCreateReservation();
 
   const [selectedLocation, setSelectedLocation] = useState("Sofia");
 
-  const carBookingHandler = (location, startDate, endDate) => {
-    console.log(location);
-    console.log(startDate);
-    console.log(endDate);
-    createReservation({ location, startDate, endDate });
+  const carBookingHandler = async (location, startDate, endDate) => {
+   await createReservation({ location, startDate, endDate });
+   navigate('/my-profile')
   };
+  console.log(reservationPending);
 
   return (
     <div className="container my-4">
@@ -82,7 +84,12 @@ export default function CarDetails() {
               <p className="card-text">
                 Ready to take this car for a spin? Reserve now!
               </p>
-              {user ? (
+              {reservationPending ? (
+                <p className="mb-auto">
+                  <h2>Booking in progress...</h2>
+                  <Spinner />
+                </p>
+              ) : user ? (
                 <div className="container mt-5 mb-auto">
                   <h5 className="text-center mb-3">Select Location</h5>
 
