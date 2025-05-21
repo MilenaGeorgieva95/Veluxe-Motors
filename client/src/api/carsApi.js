@@ -68,7 +68,7 @@ export const useCreateCar = () => {
   return { create };
 };
 
-export const useMyCars = () => {
+export const useMyCars = (refreshKey = 0) => {
   const { user } = useContext(UserContext);
   const [myCars, setMyCars] = useState([]);
   const [pending, setPending] = useState(false);
@@ -83,6 +83,6 @@ export const useMyCars = () => {
     } finally {
       setPending(false);
     }
-  }, []);
+  }, [user, refreshKey]);
   return { myCars, pending };
 };

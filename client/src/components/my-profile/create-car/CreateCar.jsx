@@ -1,9 +1,8 @@
 import { useState } from "react";
 import CreateCarForm from "./CreateCarForm";
 import { useCreateCar } from "../../../api/carsApi";
-import { useNavigate } from "react-router";
 
-export default function CreateCar() {
+export default function CreateCar({onCarCreated}) {
   const [showCreate, setShowCreate] = useState(false);
   const showCreateHandler = () => {
     setShowCreate(true);
@@ -32,8 +31,9 @@ export default function CreateCar() {
       newCar.img = carData.img;
     }
     try {
-      create(newCar);
+      await create(newCar);
       setShowCreate(false);
+      onCarCreated?.()
     } catch (error) {
       console.log(error.message);
     }

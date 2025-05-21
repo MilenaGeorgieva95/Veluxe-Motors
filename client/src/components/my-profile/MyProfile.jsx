@@ -6,11 +6,17 @@ import MyBookings from "./my-bookings/MyBookings";
 import MyCars from "./my-cars/MyCars";
 import MyReservations from "./my-reservations/MyReservations";
 import { useMyAppointments } from "../../api/appointmentsApi";
+import { useState } from "react";
 
 export default function MyProfile() {
+  const [refreshKey, setRefreshKey] = useState(0);
   const { appointments } = useMyAppointments();
   const { reservations } = useMyReservations();
-  const { myCars } = useMyCars();
+  const { myCars } = useMyCars(refreshKey);
+
+  const handleCarCreated = () => {
+    setRefreshKey(prev => prev + 1)
+  };
   return (
     <>
       <div>
@@ -22,7 +28,7 @@ export default function MyProfile() {
         />
         <MyBookings appointments={appointments} />
         <MyReservations reservations={reservations} />
-        <CreateCar />
+        <CreateCar onCarCreated={handleCarCreated}/>
         <MyCars myCars={myCars} />
       </div>
     </>
