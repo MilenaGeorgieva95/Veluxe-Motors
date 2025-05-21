@@ -47,9 +47,6 @@ export const useMyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const { user } = useContext(UserContext);
   const searchParams = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${user.userId}"}}`
-  // const searchParams = new URLSearchParams({
-  //   where: `_ownerId="${user._id}"`,
-  // });
   useEffect(() => {
     try {
       request
