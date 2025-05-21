@@ -11,7 +11,7 @@ export const useCars = () => {
   useEffect(() => {
     setPending(true);
     try {
-      request.get(baseUrl).then(setCars);
+      request.get(baseUrl).then(data=>setCars(data.results));
     } catch (error) {
       console.log(error);
     } finally {

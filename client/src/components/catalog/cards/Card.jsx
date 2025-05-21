@@ -14,7 +14,7 @@ export default function Card({ car }) {
           <h4 className="mb-3">{car.brand}</h4>
           <p className="mb-3">{car.model}</p>
           <Link
-            to={`/catalog-cars/${car._id}/details`}
+            to={`/catalog-cars/${car.objectId}/details`}
             className={styles.detailsBtn}
           >
             Details

@@ -11,7 +11,7 @@ export default function Card({ car }) {
         <h5 className="card-title">{car.brand}</h5>
         <p className="card-text">{car.model}</p>
         <Link
-          to={`/catalog-cars/${car._id}/details`}
+          to={`/catalog-cars/${car.objectId}/details`}
           className="btn btn-primary mt-auto"
         >
           Details
