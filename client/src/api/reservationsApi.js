@@ -15,11 +15,16 @@ export const useCreateReservation = () => {
   }
   },[])
 
-  const create = async (reservationData) => {
+  const create = async (reservationData, carId) => {
     reservationData.ownerId = {
       __type: "Pointer",
       className: "_User",
       objectId: user.userId,
+    };
+        reservationData.carId = {
+      __type: "Pointer",
+      className: "_Cars",
+      objectId: carId,
     };
     try {
       setPending(true);
@@ -30,4 +35,21 @@ export const useCreateReservation = () => {
     }
   };
   return { create, pending };
+};
+
+
+export const useMyReservations = () => {
+  const [reservations, setReservations] = useState([]);
+  const { user } = useContext(UserContext);
+  const searchParams = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${user.userId}"}}`
+  useEffect(() => {
+    try {
+      request
+        .get(`${baseUrl}?${searchParams}`)
+        .then(data=>setReservations(data.results));
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+  return { reservations };
 };

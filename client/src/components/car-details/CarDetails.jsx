@@ -10,15 +10,24 @@ export default function CarDetails() {
   const { carId } = useParams();
   const { car, pending } = useCar(carId);
   const { user } = useContext(UserContext);
-  const navigate = useNavigate()
-  const { create: createReservation, pending: reservationPending} =
+  const navigate = useNavigate();
+  const { create: createReservation, pending: reservationPending } =
     useCreateReservation();
 
   const [selectedLocation, setSelectedLocation] = useState("Sofia");
 
   const carBookingHandler = async (location, startDate, endDate) => {
-   await createReservation({ location, startDate, endDate });
-   navigate('/my-profile')
+    await createReservation(
+      {
+        location,
+        startDate,
+        endDate,
+        carBrand: car.brand,
+        carModel: car.model,
+      },
+      car.objectId
+    );
+    navigate("/my-profile");
   };
   console.log(reservationPending);
 

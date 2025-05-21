@@ -2,6 +2,7 @@ import PageTitle from "../page-title/PageTitle";
 import CreateCar from "./create-car/CreateCar";
 import MyBookings from "./my-bookings/MyBookings";
 import MyCars from "./my-cars/MyCars";
+import MyReservations from "./my-reservations/MyReservations";
 
 export default function MyProfile() {
   return (
@@ -14,6 +15,7 @@ export default function MyProfile() {
           }
         />
         <MyBookings />
+        <MyReservations/>
         <CreateCar />
         <MyCars />
       </div>
