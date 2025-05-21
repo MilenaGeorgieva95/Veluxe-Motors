@@ -17,7 +17,7 @@ export default function CarDetails() {
       <div className="row">
         <img
           src={car.img}
-          className="card-img-top height-50"
+          className="card-img-top"
           alt={`${car.brand} ${car.model}`}
         />
         {/* Left Column - Car Details */}

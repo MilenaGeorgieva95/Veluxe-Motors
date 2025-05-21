@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { request } from "../utils/requester";
 import { UserContext } from "../components/contexts/UserContext";
 
-const baseUrl = "/data/appointments";
+const baseUrl = "/classes/appointments";
 
 export const useAppointments = (location) => {
   const [appointments, setAppointments] = useState([]);
@@ -10,15 +10,12 @@ export const useAppointments = (location) => {
 
   useEffect(() => {
     setPending(true);
-    const searchParams = new URLSearchParams({
-      where: `location="${location}"`,
-      select: "date",
-    });
+     const searchParams = `where={"location":"${location}"}`
     try {
       request
-        .get(`${baseUrl}?${searchParams.toString()}`)
+        .get(`${baseUrl}?${searchParams}`)
         .then((data) =>
-          setAppointments(data.map((item) => new Date(item.date)))
+          setAppointments(data.results.map((item) => new Date(item.date)))
         );
     } catch (error) {
       console.log(error);
@@ -32,8 +29,13 @@ export const useAppointments = (location) => {
 export const useCreateAppointment = () => {
   const { user } = useContext(UserContext);
   const create = async (appointmentData) => {
+    appointmentData.ownerId={
+    __type: 'Pointer',
+    className: '_User',
+    objectId: user.userId
+  }
     try {
-      return await request.post(baseUrl, appointmentData, user.accessToken);
+      return await request.post(baseUrl, appointmentData, user.token);
     } catch (error) {
       console.log(error);
     }

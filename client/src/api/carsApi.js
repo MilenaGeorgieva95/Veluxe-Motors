@@ -63,8 +63,6 @@ export const useCreateCar = () => {
     className: '_User',
     objectId: user.userId
   }
-    console.log(carData);
-
     return request.post(baseUrl, carData, accessToken);
   };
   return { create };
