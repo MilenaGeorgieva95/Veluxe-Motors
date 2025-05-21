@@ -46,14 +46,15 @@ export const useCreateAppointment = () => {
 export const useMyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const { user } = useContext(UserContext);
-  const searchParams = new URLSearchParams({
-    where: `_ownerId="${user._id}"`,
-  });
+  const searchParams = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${user.userId}"}}`
+  // const searchParams = new URLSearchParams({
+  //   where: `_ownerId="${user._id}"`,
+  // });
   useEffect(() => {
     try {
       request
-        .get(`${baseUrl}?${searchParams.toString()}`)
-        .then(setAppointments);
+        .get(`${baseUrl}?${searchParams}`)
+        .then(data=>setAppointments(data.results));
     } catch (error) {
       console.log(error);
     }
