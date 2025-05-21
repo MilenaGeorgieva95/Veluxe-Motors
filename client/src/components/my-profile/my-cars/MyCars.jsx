@@ -1,10 +1,6 @@
-import { Link } from "react-router";
-import { useMyCars } from "../../../api/carsApi";
 import Card from "./cards/Card";
 
-export default function MyCars() {
-  const { myCars } = useMyCars();
-  console.log(myCars);
+export default function MyCars({myCars}) {
 
   return (
     <>

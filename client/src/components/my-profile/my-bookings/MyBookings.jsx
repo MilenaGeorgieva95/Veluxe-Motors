@@ -1,10 +1,6 @@
 import { Link } from "react-router";
-import { useMyAppointments } from "../../../api/appointmentsApi";
 
-export default function MyBookings() {
-  const { appointments } = useMyAppointments();
-  console.log(appointments);
-
+export default function MyBookings({appointments}) {
   return (
     <>
       <div className="container my-4">

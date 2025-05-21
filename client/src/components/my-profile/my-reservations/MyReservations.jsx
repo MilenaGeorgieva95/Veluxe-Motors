@@ -1,10 +1,7 @@
 import { Link } from "react-router";
 import { useMyReservations } from "../../../api/reservationsApi";
 
-export default function MyReservations() {
-  const { reservations } = useMyReservations();
-  console.log(reservations);
-
+export default function MyReservations({reservations}) {
   return (
     <>
       <div className="container my-4">

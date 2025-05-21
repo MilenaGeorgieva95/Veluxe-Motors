@@ -9,19 +9,23 @@ export const useCreateReservation = () => {
   const navigate = useNavigate();
   const [pending, setPending] = useState(false);
   const { user } = useContext(UserContext);
-  useEffect(()=>{
-  if (!user.userId) {
-    navigate("/login");
-  }
-  },[])
+  useEffect(() => {
+    if (!user.userId) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   const create = async (reservationData, carId) => {
+    if (!user?.userId || !user?.token) {
+      console.error("User not authenticated");
+      return;
+    }
     reservationData.ownerId = {
       __type: "Pointer",
       className: "_User",
       objectId: user.userId,
     };
-        reservationData.carId = {
+    reservationData.carId = {
       __type: "Pointer",
       className: "_Cars",
       objectId: carId,
@@ -31,25 +35,30 @@ export const useCreateReservation = () => {
       await request.post(baseUrl, reservationData, user.token);
       setPending(false);
     } catch (error) {
-      console.log(error);
+      console.error("Reservation creation failed:", error);
+    } finally {
+      setPending(false);
     }
   };
   return { create, pending };
 };
 
-
 export const useMyReservations = () => {
   const [reservations, setReservations] = useState([]);
   const { user } = useContext(UserContext);
-  const searchParams = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${user.userId}"}}`
+
   useEffect(() => {
-    try {
-      request
-        .get(`${baseUrl}?${searchParams}`)
-        .then(data=>setReservations(data.results));
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+    const fetchReservations = async () => {
+      try {
+        const searchParams = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${user.userId}"}}`;
+        request
+          .get(`${baseUrl}?${searchParams}`)
+          .then((data) => setReservations(data.results));
+      } catch (error) {
+        console.error("Failed to fetch reservations:", error);
+      }
+    };
+    fetchReservations();
+  }, [user?.userId]);
   return { reservations };
 };
