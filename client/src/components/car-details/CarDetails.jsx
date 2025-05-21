@@ -3,14 +3,22 @@ import { useCar } from "../../api/carsApi";
 import CarCalendar from "./CarCalendar";
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { useCreateReservation } from "../../api/reservationsApi";
 
 export default function CarDetails() {
   const { carId } = useParams();
   const { car, pending } = useCar(carId);
   const { user } = useContext(UserContext);
-  console.log(car);
+  const { create: createReservation } = useCreateReservation();
 
   const [selectedLocation, setSelectedLocation] = useState("Sofia");
+
+  const carBookingHandler = (location, startDate, endDate) => {
+    console.log(location);
+    console.log(startDate);
+    console.log(endDate);
+    createReservation({ location, startDate, endDate });
+  };
 
   return (
     <div className="container my-4">
@@ -94,7 +102,10 @@ export default function CarDetails() {
                       })}
                     </select>
                   </div>
-                  <CarCalendar location={selectedLocation} />
+                  <CarCalendar
+                    location={selectedLocation}
+                    createReservation={carBookingHandler}
+                  />
                 </div>
               ) : (
                 <p className="mb-auto">

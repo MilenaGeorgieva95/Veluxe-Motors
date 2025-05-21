@@ -12,7 +12,7 @@ export default function CatalogCars() {
         subTitle={"Find the Perfect Car for Your Journey"}
       />
       {cars.map((car) => (
-        <Card key={car._id} car={car} />
+        <Card key={car.objectId} car={car} />
       ))}
     </>
   );

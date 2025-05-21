@@ -1,19 +1,17 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 
-export default function CarCalendar({ location }) {
+export default function CarCalendar({ location, createReservation }) {
   const [selectedStartDate, setSelectedStartDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
 
-  console.log(location);
-
-  const selectLocationHandler = (formData) => {
-    setSelectedLocation(formData.get("location"));
-    console.log(selectedStartDate);
-    console.log(selectedLocation);
+  const formSubmit = (e) => {
+    e.preventDefault();
+    createReservation(location, selectedStartDate, selectedEndDate);
   };
+
   return (
-    <form action={selectLocationHandler}>
+    <form onSubmit={formSubmit}>
       <h5 className="text-center m-3">Select Start Date</h5>
 
       <div className="d-flex justify-content-center">
