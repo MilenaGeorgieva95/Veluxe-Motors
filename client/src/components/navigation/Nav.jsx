@@ -35,12 +35,6 @@ export default function Nav() {
             <Link to="/catalog-cars" className="nav-item nav-link">
               Hire a Car
             </Link>
-            <Link to="/catalog-vans" className="nav-item nav-link">
-              Hire a Van
-            </Link>
-            <Link to="/car-club" className="nav-item nav-link">
-              Car Club
-            </Link>
             <Link to="/about" className="nav-item nav-link">
               About Us
             </Link>

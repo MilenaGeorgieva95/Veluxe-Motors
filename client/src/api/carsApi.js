@@ -40,15 +40,10 @@ export const useFeaturedCars = () => {
 
   useEffect(() => {
     setPending(true);
-    const PAGE_SIZE = 3;
-    const searchParams = new URLSearchParams({
-      sortBy: "_createdOn desc",
-      pageSize: PAGE_SIZE,
-      select: "_id,brand,model,img",
-    });
+        const searchParams = 'order=-createdAt&limit=3'
     try {
       request.get(`${baseUrl}?${searchParams.toString()}`).then((data) => {
-        setCars(data);
+        setCars(data.results);
         setPending(false);
       });
     } catch (error) {
@@ -84,7 +79,7 @@ export const useMyCars = () => {
     const searchParams = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${user.userId}"}}`
     setPending(true);
     try {
-      request.get(`${baseUrl}?${searchParams.toString()}`).then(data=>setMyCars(data.results));
+      request.get(`${baseUrl}?${searchParams}`).then(data=>setMyCars(data.results));
     } catch (error) {
       console.log(error);
     } finally {

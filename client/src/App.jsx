@@ -34,13 +34,10 @@ function App() {
         <Route element={<AuthGuard />}>
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/appointment" element={<Appointment />} />
-          <Route path="/car-club" element={<MyProfile />} />
           <Route path="/logout" element={<Logout />} />
         </Route>
         <Route path="/catalog-cars" element={<CatalogCars />} />
-        <Route path="/catalog-vans" element={<MyProfile />} />
         <Route path="/catalog-cars/:carId/details" element={<CarDetails />} />
-        <Route path="/catalog-cars/:vanId/details" />
         <Route path="/about" element={<AboutUs />} />
       </Routes>
       <Footer />
