@@ -6,7 +6,7 @@ export default function AuthGuard() {
   const { user } = useContext(UserContext);
   const isAuth = !!user?.username;
   if (!isAuth) {
-    return <Navigate to={"/login"} />;
+    return <Navigate to={"/"} />;
   }
   return <Outlet />;
 }

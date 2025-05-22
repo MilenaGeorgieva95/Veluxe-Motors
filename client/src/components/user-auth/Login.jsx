@@ -13,7 +13,7 @@ export default function Login() {
     try {
       const authData = await login(formValues.username, formValues.password);
       setUser({userId:authData.objectId,token:authData.sessionToken,  username:formValues.username});
-      navigate('/');
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }
