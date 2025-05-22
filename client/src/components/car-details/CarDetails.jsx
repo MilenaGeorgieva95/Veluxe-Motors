@@ -29,7 +29,6 @@ export default function CarDetails() {
     );
     navigate("/my-profile");
   };
-  console.log(reservationPending);
 
   return (
     <div className="container my-4">

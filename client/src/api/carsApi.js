@@ -95,27 +95,4 @@ export const useMyCars = (refreshKey = 0) => {
   return { myCars, pending };
 };
 
-export const useSearch = (location, transmission) => {
-  const [cars, setCars] = useState([]);
-  const [pending, setPending] = useState(false);
 
-  useEffect(() => {
-    setPending(true);
-    const filters = {
-      location,
-      transmission,
-    };
-
-    const searchParams = `where=${encodeURIComponent(JSON.stringify(filters))}`;
-    request
-      .get(`${baseUrl}?${searchParams}`)
-      .then((data) => setCars(data.results))
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setPending(false);
-      });
-  }, [location, transmission]);
-  return { cars, pending };
-};

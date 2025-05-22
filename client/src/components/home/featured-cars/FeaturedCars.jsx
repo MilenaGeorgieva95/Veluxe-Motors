@@ -6,9 +6,6 @@ import Spinner from "../../spinner/Spinner";
 
 export default function FeaturedCars() {
   const { cars, pending } = useFeaturedCars();
-  console.log(cars);
-  
-
   return (
     <>
       <div

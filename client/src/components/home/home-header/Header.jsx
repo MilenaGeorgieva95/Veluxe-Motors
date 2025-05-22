@@ -1,11 +1,9 @@
 import { Link } from "react-router";
 import styles from "./Header.module.css";
-import { useState } from "react";
 import { request } from "../../../utils/requester";
 
 export default function Header({showSearchResults}) {
   const handleSearch = async (formData) => {
-    console.log('click');
     if(!formData.get("minPrice")&&!formData.get("maxPrice")){
       return showSearchResults([])
     }
