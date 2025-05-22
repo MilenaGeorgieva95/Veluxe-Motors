@@ -1,6 +1,28 @@
+import { Link } from "react-router";
 import styles from "./Header.module.css";
+import { useState } from "react";
+import { request } from "../../../utils/requester";
 
-export default function Header() {
+export default function Header({showSearchResults}) {
+  const handleSearch = async (formData) => {
+    console.log('click');
+    if(!formData.get("minPrice")&&!formData.get("maxPrice")){
+      return showSearchResults([])
+    }
+    const minPrice = Number(formData.get("minPrice"));
+    const maxPrice = Number(formData.get("maxPrice"));
+    let searchParams = `where={"price":{"$gte":${minPrice}}}`
+    if (maxPrice&&maxPrice>minPrice) {
+      searchParams = `where={"price":{"$gte":${minPrice},"$lte":${maxPrice}}}`;
+    }
+    try {
+      const data = await request.get(`/classes/cars?${searchParams}`);
+      showSearchResults(data.results)
+    } catch (error) {
+      console.log("Search failed:", error);
+    }
+  };
+
   return (
     <>
       <div
@@ -18,40 +40,39 @@ export default function Header() {
             data-wow-delay="0.4s"
           >
             <h2 className="display-5 text-dark mb-4">
-              <a className="display-6 text-dark" href="#">
+              <Link className="display-6 text-dark" to="/catalog-cars">
                 Reserve a Vehicle
-              </a>{" "}
+              </Link>{" "}
               {}
               <span className={styles.orSpan}>or</span> {}
-              <a href="#">
+              <Link to="/my-profile">
                 <span className={styles.textGreen}>
                   View/Modify/Cancel Reservation
                 </span>
-              </a>
+              </Link>
             </h2>
 
-            <form className="display-5 text-dark mb-5">
+            <form action={handleSearch} className="display-5 text-dark mb-5">
               <div className="row g-4 ">
                 <div className="col-12 col-sm-5">
-                  <select
+                  <input
+                    name="minPrice"
+                    type="number"
                     className="form-select border-0"
                     style={{ height: "55px" }}
-                  >
-                    <option defaultChecked>Choose location</option>
-                    <option value="1">Location 1</option>
-                    <option value="2">Location 2</option>
-                    <option value="3">Location 3</option>
-                  </select>
+                    placeholder="Min Price"
+                    min='1'
+                  ></input>
                 </div>
                 <div className="col-12 col-sm-5">
-                  <select
+                  <input
+                    name="maxPrice"
+                    type="number"
                     className="form-select border-0"
                     style={{ height: "55px" }}
-                  >
-                    <option defaultChecked>Choose Vehicle Type</option>
-                    <option value="car">Car</option>
-                    <option value="van">Van</option>
-                  </select>
+                    placeholder="Max Price"
+                    min='0'
+                  ></input>
                 </div>
                 <div className="col-12 col-sm-2">
                   <button
