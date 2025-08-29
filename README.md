@@ -1,4 +1,4 @@
-# 🌱 [Veluxe Motors](https://veluxe-motors.web.app/)
+# :car: [Veluxe Motors](https://veluxe-motors.web.app/)
 
 ## 📌[https://veluxe-motors.web.app/](https://veluxe-motors.web.app/)
 
